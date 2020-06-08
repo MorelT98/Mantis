@@ -133,6 +133,10 @@ public class CropViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
+    public func setCropOverlayColors(outerLinesColor: UIColor = .white, gridLinesColor: UIColor = UIColor(white: 0.8, alpha: 1), cornersColor: UIColor = .white) {
+        self.cropView.gridOverlayView.setColors(outerLinesColor: outerLinesColor, gridLinesColor: gridLinesColor, cornersColor: cornersColor)
+    }
+    
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if initialLayout == false {
