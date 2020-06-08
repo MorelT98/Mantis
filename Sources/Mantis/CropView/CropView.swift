@@ -55,7 +55,7 @@ class CropView: UIView {
 
     // Referred to in extension
     let imageContainer: ImageContainer
-    let gridOverlayView: CropOverlayView
+    public var gridOverlayView: CropOverlayView
     var rotationDial: RotationDial?
 
     lazy var scrollView = CropScrollView(frame: bounds)
