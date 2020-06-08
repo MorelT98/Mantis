@@ -9,10 +9,10 @@
 import UIKit
 
 class CropOverlayView: UIView {
-    private var boarderNormalColor = UIColor.white
-    private var boarderHintColor = UIColor.white
-    private var hintLine = UIView()
-    private var tappedEdge: CropViewOverlayEdge = .none
+    public var boarderNormalColor = UIColor.white
+    public var boarderHintColor = UIColor.white
+    public var hintLine = UIView()
+    public var tappedEdge: CropViewOverlayEdge = .none
     
     var gridHidden = true
     var gridColor = UIColor(white: 0.8, alpha: 1)
@@ -51,10 +51,10 @@ class CropOverlayView: UIView {
         super.init(coder: aDecoder)
     }
     
-    private func createNewLine() -> UIView {
+    private func createNewLine(color: UIColor = .white) -> UIView {
         let view = UIView()
         view.frame = CGRect.zero
-        view.backgroundColor = .white
+        view.backgroundColor = color
         addSubview(view)
         return view
     }
@@ -66,7 +66,7 @@ class CropOverlayView: UIView {
         borderLine.layer.borderColor = boarderNormalColor.cgColor
         
         for _ in 0..<8 {
-            corner.append(createNewLine())
+            corner.append(createNewLine(color: .systemYellow))
         }
         
         setupGridLines()
