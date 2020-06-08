@@ -55,7 +55,7 @@ class CropView: UIView {
 
     // Referred to in extension
     let imageContainer: ImageContainer
-    public var gridOverlayView: CropOverlayView
+    let gridOverlayView: CropOverlayView
     var rotationDial: RotationDial?
 
     lazy var scrollView = CropScrollView(frame: bounds)
@@ -69,6 +69,7 @@ class CropView: UIView {
     deinit {
         print("CropView deinit.")
     }
+    
     
     init(image: UIImage, viewModel: CropViewModel = CropViewModel()) {
         self.image = image
@@ -358,6 +359,10 @@ extension CropView {
         }
         
         return GeometryHelper.getInscribeRect(fromOutsideRect: outsideRect, andInsideRect: insideRect)
+    }
+    
+    public func setCropOverlayColors(outerLinesColor: UIColor = .white, gridLinesColor: UIColor = UIColor(white: 0.8, alpha: 1), cornersColor: UIColor = .white) {
+        self.gridOverlayView.setColors(outerLinesColor: outerLinesColor, gridLinesColor: gridLinesColor, cornersColor: cornersColor)
     }
     
     func getContentBounds() -> CGRect {

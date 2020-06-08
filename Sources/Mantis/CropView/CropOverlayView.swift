@@ -9,10 +9,10 @@
 import UIKit
 
 class CropOverlayView: UIView {
-    public var boarderNormalColor = UIColor.white
-    public var boarderHintColor = UIColor.white
-    public var hintLine = UIView()
-    public var tappedEdge: CropViewOverlayEdge = .none
+    private var boarderNormalColor = UIColor.white
+    private var boarderHintColor = UIColor.white
+    private var hintLine = UIView()
+    private var tappedEdge: CropViewOverlayEdge = .none
     
     var gridHidden = true
     var gridColor = UIColor(white: 0.8, alpha: 1)
@@ -81,6 +81,22 @@ class CropOverlayView: UIView {
         }
     }
     
+    public func setColors(outerLinesColor: UIColor = .white,
+                          gridLinesColor: UIColor = UIColor(white: 0.8, alpha: 1),
+                          cornersColor: UIColor = .white) {
+        // Set up outer lines color
+        borderLine.layer.backgroundColor = outerLinesColor.cgColor
+        
+        // Set up horizontal grid lines color
+        horizontalGridLines.forEach { $0.layer.backgroundColor = gridLinesColor.cgColor }
+        
+        // Set up vertical grid lines color
+        verticalGridLines.forEach { $0.layer.backgroundColor = gridLinesColor.cgColor }
+        
+        // Set ip corners color
+        corner.forEach { $0.backgroundColor = gridLinesColor }
+    }
+    
     private func layoutLines() {
         guard bounds.isEmpty == false else {
             return
@@ -136,8 +152,7 @@ class CropOverlayView: UIView {
         borderLine.layer.borderColor = boarderNormalColor.cgColor
     }
     
-    private func layoutCornerLines() {
-        let borderThickness = CGFloat(3.0)
+    private func layoutCornerLines(borderThickness: CGFloat = CGFloat(3.0)) {
         
         let topLeftHorizonalLayerFrame = CGRect(x: -borderThickness, y: -borderThickness, width: cropOverLayerCornerWidth, height: borderThickness)
         let topLeftVerticalLayerFrame = CGRect(x: -borderThickness, y: -borderThickness, width: borderThickness, height: cropOverLayerCornerWidth)
