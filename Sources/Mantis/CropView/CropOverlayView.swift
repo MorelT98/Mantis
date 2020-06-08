@@ -85,16 +85,23 @@ class CropOverlayView: UIView {
                           gridLinesColor: UIColor = UIColor(white: 0.8, alpha: 1),
                           cornersColor: UIColor = .white) {
         // Set up outer lines color
-        borderLine.layer.backgroundColor = outerLinesColor.cgColor
+        editColor(view: borderLine, color: outerLinesColor)
         
         // Set up horizontal grid lines color
-        horizontalGridLines.forEach { $0.layer.backgroundColor = gridLinesColor.cgColor }
+        horizontalGridLines.forEach { editColor(view: $0, color: gridLinesColor) }
         
         // Set up vertical grid lines color
-        verticalGridLines.forEach { $0.layer.backgroundColor = gridLinesColor.cgColor }
+        verticalGridLines.forEach { editColor(view: $0, color: gridLinesColor) }
         
         // Set ip corners color
-        corner.forEach { $0.backgroundColor = gridLinesColor }
+        corner.forEach { editColor(view: $0, color: cornersColor) }
+    }
+    
+    private func editColor(view: UIView, color: UIColor) {
+        view.backgroundColor = color
+        view.tintColor = color
+        view.layer.borderColor = color.cgColor
+        view.layer.backgroundColor = color.cgColor
     }
     
     private func layoutLines() {
