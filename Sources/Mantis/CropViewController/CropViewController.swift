@@ -137,6 +137,10 @@ public class CropViewController: UIViewController {
         self.cropView.gridOverlayView.setColors(outerLinesColor: outerLinesColor, gridLinesColor: gridLinesColor, cornersColor: cornersColor)
     }
     
+    public func handleRotation(by angle: CGAngle) {
+        cropView.viewModel.viewStatus = .rotating(angle: angle)
+    }
+    
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if initialLayout == false {
