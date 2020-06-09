@@ -71,13 +71,11 @@ public class CropToolbar: UIView, CropToolbarProtocol {
     }
     
     private func createResetButton(with image: UIImage? = nil) {
+        let resetText = LocalizedHelper.getString("Reset")
+        resetButton = createOptionButton(withTitle: resetText, andAction: #selector(reset))
+        
         if let image = image {
-            resetButton = createOptionButton(withTitle: "nil", andAction: #selector(reset))
             resetButton?.setImage(image, for: .normal)
-        } else {
-            let resetText = LocalizedHelper.getString("Reset")
-
-            resetButton = createOptionButton(withTitle: resetText, andAction: #selector(reset))
         }
     }
     
@@ -99,11 +97,12 @@ public class CropToolbar: UIView, CropToolbarProtocol {
         optionButtonStackView?.isLayoutMarginsRelativeArrangement = true
     }
     
-    public func customizeOptionButton(button: UIButton, text: String, backgroundColor: UIColor, textColor: UIColor, cornerRaduis: CGFloat = 20) {
+    public func customizeOptionButton(button: UIButton, text: String, backgroundColor: UIColor, textColor: UIColor, font: UIFont, cornerRaduis: CGFloat = 20) {
         button.titleLabel?.text = text
         button.backgroundColor = backgroundColor
         button.setTitleColor(textColor, for: .normal)
         button.tintColor = textColor
+        button.titleLabel?.font = font
         button.layer.cornerRadius = cornerRaduis
     }
     
