@@ -13,7 +13,7 @@ class CropMaskViewManager {
     fileprivate var visualEffectView: CropVisualEffectView!
     
     var cropShapeType: CropShapeType = .rect
-    let minTransparency: CGFloat = 0.4
+    let minTransparency: CGFloat = 0.2
     
     init(with superview: UIView, cropShapeType: CropShapeType = .rect) {
         setup(in: superview)
