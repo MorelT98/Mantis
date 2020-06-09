@@ -13,6 +13,7 @@ class CropMaskViewManager {
     fileprivate var visualEffectView: CropVisualEffectView!
     
     var cropShapeType: CropShapeType = .rect
+    let minTransparency: CGFloat = 0.4
     
     init(with superview: UIView, cropShapeType: CropShapeType = .rect) {
         setup(in: superview)
@@ -22,7 +23,7 @@ class CropMaskViewManager {
     private func setupOverlayView(in view: UIView) {
         dimmingView = CropDimmingView(cropShapeType: cropShapeType)
         dimmingView.isUserInteractionEnabled = false
-        dimmingView.alpha = 0
+        dimmingView.alpha = minTransparency
         view.addSubview(dimmingView)
     }
     
@@ -50,13 +51,13 @@ class CropMaskViewManager {
     func showDimmingBackground() {
         UIView.animate(withDuration: 0.1) {
             self.dimmingView.alpha = 1
-            self.visualEffectView.alpha = 0
+            self.visualEffectView.alpha = self.minTransparency
         }
     }
     
     func showVisualEffectBackground() {
         UIView.animate(withDuration: 0.5) {
-            self.dimmingView.alpha = 0
+            self.dimmingView.alpha = self.minTransparency
             self.visualEffectView.alpha = 1
         }
     }
