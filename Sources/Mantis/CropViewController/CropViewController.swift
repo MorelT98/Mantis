@@ -138,7 +138,7 @@ public class CropViewController: UIViewController {
     }
     
     public func handleRotation(by angle: CGAngle) {
-        cropView.viewModel.viewStatus = .rotating(angle: angle)
+        cropView.viewModel.setRotatingStatus(by: angle)
     }
     
     override public func viewDidLayoutSubviews() {
