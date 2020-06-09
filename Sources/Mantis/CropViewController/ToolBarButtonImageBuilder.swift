@@ -30,6 +30,9 @@ import UIKit
 
 struct ToolBarButtonImageBuilder {
     static func rotateCCWImage() -> UIImage? {
+        if #available(iOS 13.0, *) {
+            return UIImage(systemName: "rotate.left")
+        }
         var rotateImage: UIImage? = nil
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 18, height: 21), false, 0.0)
@@ -65,6 +68,9 @@ struct ToolBarButtonImageBuilder {
     }
     
     static func rotateCWImage() -> UIImage? {
+        if #available(iOS 13.0, *) {
+            return UIImage(systemName: "rotate.right")
+        }
         guard let rotateCCWImage = self.rotateCCWImage(), let cgImage = rotateCCWImage.cgImage else { return nil }
         
         UIGraphicsBeginImageContextWithOptions(rotateCCWImage.size, false,  rotateCCWImage.scale )
@@ -158,6 +164,9 @@ struct ToolBarButtonImageBuilder {
     }
     
     static func clampImage() -> UIImage? {
+        if #available(iOS 13.0, *) {
+            return UIImage(systemName: "aspectratio")
+        }
         var clampImage: UIImage? = nil
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 22, height: 16), false, 0.0)
@@ -195,6 +204,9 @@ struct ToolBarButtonImageBuilder {
     }
     
     static func resetImage() -> UIImage? {
+        if #available(iOS 13.0, *) {
+            return UIImage(systemName: "arrow.counterclockwise")
+        }
         var resetImage: UIImage? = nil
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 22, height: 18), false, 0.0)            //// Bezier 2 Drawing
