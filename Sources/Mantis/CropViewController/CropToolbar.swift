@@ -103,6 +103,7 @@ public class CropToolbar: UIView, CropToolbarProtocol {
         button.titleLabel?.text = text
         button.backgroundColor = backgroundColor
         button.setTitleColor(textColor, for: .normal)
+        button.tintColor = textColor
         button.layer.cornerRadius = cornerRaduis
     }
     
@@ -135,10 +136,10 @@ public class CropToolbar: UIView, CropToolbarProtocol {
         createButtonContainer()
         setButtonContainerLayout()
         
-        if config.mode == .normal {
-            createCancelButton()
-            addButtonsToContainer(button: cancelButton)
-        }
+//        if config.mode == .normal {
+//            createCancelButton()
+//            addButtonsToContainer(button: cancelButton)
+//        }
         
         if config.toolbarButtonOptions.contains(.counterclockwiseRotate) {
             createCounterClockwiseRotationButton()
