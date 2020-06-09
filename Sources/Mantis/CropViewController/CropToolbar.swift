@@ -19,13 +19,13 @@ public class CropToolbar: UIView, CropToolbarProtocol {
     
     public var cropToolbarDelegate: CropToolbarDelegate?
     
-    var fixedRatioSettingButton: UIButton?
+    public var fixedRatioSettingButton: UIButton?
 
-    var cancelButton: UIButton?
-    var resetButton: UIButton?
-    var counterClockwiseRotationButton: UIButton?
-    var clockwiseRotationButton: UIButton?
-    var cropButton: UIButton?
+    public var cancelButton: UIButton?
+    public var resetButton: UIButton?
+    public var counterClockwiseRotationButton: UIButton?
+    public var clockwiseRotationButton: UIButton?
+    public var cropButton: UIButton?
     
     var config: CropToolbarConfig!
     
@@ -61,7 +61,7 @@ public class CropToolbar: UIView, CropToolbarProtocol {
     }
     
     private func createCounterClockwiseRotationButton() {
-        counterClockwiseRotationButton = createOptionButton(withTitle: nil, andAction: #selector(counterClockwiseRotate))
+        counterClockwiseRotationButton = createOptionButton(withTitle: "Rotate", andAction: #selector(counterClockwiseRotate))
         counterClockwiseRotationButton?.setImage(ToolBarButtonImageBuilder.rotateCCWImage(), for: .normal)
     }
 
@@ -72,7 +72,7 @@ public class CropToolbar: UIView, CropToolbarProtocol {
     
     private func createResetButton(with image: UIImage? = nil) {
         if let image = image {
-            resetButton = createOptionButton(withTitle: nil, andAction: #selector(reset))
+            resetButton = createOptionButton(withTitle: "nil", andAction: #selector(reset))
             resetButton?.setImage(image, for: .normal)
         } else {
             let resetText = LocalizedHelper.getString("Reset")
@@ -97,6 +97,13 @@ public class CropToolbar: UIView, CropToolbarProtocol {
         
         optionButtonStackView?.distribution = .equalCentering
         optionButtonStackView?.isLayoutMarginsRelativeArrangement = true
+    }
+    
+    public func customizeOptionButton(button: UIButton, text: String, backgroundColor: UIColor, textColor: UIColor, cornerRaduis: CGFloat = 20) {
+        button.titleLabel?.text = text
+        button.backgroundColor = backgroundColor
+        button.setTitleColor(textColor, for: .normal)
+        button.layer.cornerRadius = cornerRaduis
     }
     
     private func setButtonContainerLayout() {

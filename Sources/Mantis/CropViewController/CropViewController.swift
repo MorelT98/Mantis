@@ -61,7 +61,7 @@ public class CropViewController: UIViewController {
     
     private var orientation: UIInterfaceOrientation = .unknown
     private lazy var cropView = CropView(image: image, viewModel: CropViewModel())
-    private var cropToolbar: CropToolbarProtocol
+    public var cropToolbar: CropToolbarProtocol
     private var ratioPresenter: RatioPresenter?
     private var stackView: UIStackView?
     private var initialLayout = false
