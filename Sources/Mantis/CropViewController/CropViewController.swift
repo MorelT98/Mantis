@@ -215,7 +215,7 @@ public class CropViewController: UIViewController {
             cropView.forceFixedRatio = false
         }
         
-        let rotate = UIRotationGestureRecognizer(target: cropView, action: #selector(rotatedCropView))
+        let rotate = UIRotationGestureRecognizer(target: self, action: #selector(rotatedCropView))
         cropView.addGestureRecognizer(rotate)
     }
     
