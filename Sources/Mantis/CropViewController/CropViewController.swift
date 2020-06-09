@@ -215,17 +215,18 @@ public class CropViewController: UIViewController {
             cropView.forceFixedRatio = false
         }
         
-        let rotate = UIRotationGestureRecognizer(target: cropView, action: #selector(rotatedCropView(_:)))
+        let rotate = UIRotationGestureRecognizer(target: cropView, action: #selector(rotatedCropView))
         cropView.addGestureRecognizer(rotate)
     }
     
-    @objc func rotatedCropView(_ sender: UIRotationGestureRecognizer) {
-        print("Rotation gesture is detected.")
-        if sender.state == .began {
-        } else if sender.state == .changed {
-            cropView.viewModel.setRotatingStatus(by: CGAngle(radians: sender.rotation))
-        } else if sender.state == .ended {
+    private var rotationAngle: CGFloat = 0
+    @objc func rotatedCropView(_ gesture: UIRotationGestureRecognizer) {
+        if gesture.state == .began {
+        } else if gesture.state == .changed {
+            cropView.viewModel.setRotatingStatus(by: CGAngle(radians: rotationAngle + gesture.rotation))
+        } else if gesture.state == .ended {
             print("Rotation ended.")
+            rotationAngle += gesture.rotation
         }
     }
         
